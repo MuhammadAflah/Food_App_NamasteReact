@@ -1,0 +1,333 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;900&display=swap');
+:root{
+    --primary-color:#15605e;
+}
+body{
+    font-family: Roboto;
+    margin: 0;
+    /* background-color:#eee; */
+    padding: 0;
+}
+/* =================HEADER ================================== */
+.logo {
+    width: 50px;
+}
+.header {
+    display: flex;
+    background-color: var(--primary-color);
+    color: #fff;
+    padding:2rem;
+    justify-content: space-between;
+}
+.nav-items ul{
+    display: flex;
+    gap: 2rem;
+    padding: 0;
+}
+.nav-items ul li{
+    list-style: none;
+}
+/* =================SEARCH ================================== */ 
+.search-container{
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+}
+.search-input{
+    padding: 0.5rem 1rem;
+    border: none;
+    border-bottom: 2px solid #1f938f;
+    
+}
+.search-input:focus {
+    outline: none;
+    border-bottom: 2px solid var(--primary-color);
+}
+.search-btn {
+    padding: .5rem 1rem;
+    border:none;
+    background-color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    color: #fff;
+
+}
+.search-btn:hover{
+    background-color: #fff;
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+/* =================BODY ================================== */
+.restaurant-list{
+    width:80%;
+    margin: 1rem auto;
+    margin-top:0;
+    display:flex;
+    justify-content: center;
+    flex-wrap:wrap;
+    gap: 2.5rem;
+    padding:2rem;
+    background-color:#fff
+}
+
+.restaurant-list a {
+    text-decoration: none;
+    color: #000000;
+}
+
+.card {
+    width:300px;
+    height: 350px;
+    padding: .5rem;
+    /* box-shadow: 0 1px 0 0 rgb(185, 183, 183); */
+}
+.card:hover{
+    transition: .5s ease;
+    transform: translate(-1px, -1px);
+    box-shadow: 0px 2px 2px 0 gray;
+}
+
+.card > img {
+    width:100%;
+    border-radius: 10px;
+}
+
+.crousel {
+    display:flex;
+    gap:2rem;
+    padding:2rem 10%;
+    overflow-x:scroll;
+    background-color: #023433;
+}
+.crousel::-webkit-scrollbar {
+    display: none;
+  }
+/* .card-container:nth-last-child(1){
+    display:none;
+} */
+.crousel-image{
+    width:300px;
+}
+.crousel-image:hover {
+    transition: 0.5s;
+    transform:scale(1.05)
+}
+/* =================FOOTER ================================== */
+.footer {
+    text-align:center;
+    margin: 0;
+    padding: 1rem;
+    background-color: var(--primary-color);
+    color:white;
+}
+
+/* =================BODY SHIMMER ================================== */
+.shimmer-card {
+    width: 200px;
+    height: 200px;
+    background: lightgray;
+    margin: 20px;
+}
+.demo-card{
+    width:300px;
+    height:300px;
+    animation:load 3s ease-in-out infinite running;
+    border-radius: 10px;
+}
+
+@keyframes load {
+    0%     {background-color:#bab9b9;}
+    50.0%  {background-color:#ffffff;}
+    100.0%  {background-color:#e7e6e6;}
+}
+
+.slides{
+    width:350px;
+    height:300px;
+    animation:load 3s ease-in-out infinite running;
+    border-radius: 10px;
+}
+
+.restaurant-slide{
+    width:90%;
+    margin:2rem  auto;
+    display:flex;
+    flex-wrap:wrap;
+    gap: 1rem;
+}
+
+@keyframes load {
+    0%     {background-color:#bab9b9;}
+    50.0%  {background-color:#e4e4e4;}
+    100.0%  {background-color:#e3e3e3;}
+}
+
+/* =================error-page ================================== */
+.error-page{
+    height: 100vh;
+    background: linear-gradient(45deg, rgba(205, 29, 29, 0.298), green) ,url(https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+}
+.error-go-back {
+    text-decoration: none;
+    color: #023433;
+    font-size: 2rem;
+    background-color: #fff;
+    outline: none;
+    border: none;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+}
+
+.error-go-back:hover{
+    cursor: pointer;
+    transition: .2s ;
+    background-color: #023433;
+    color: #fff;
+    
+}
+
+/* ===================== restaurant top details===================== */
+.restaurant-info {
+    display: flex;
+    gap: 2rem;
+    color:#fff;
+    align-items:center;
+    justify-content:center;
+    padding: 2rem;
+    background: #111e20;
+    margin-bottom: 1rem;
+
+}
+/* .restaurant-info  p{
+    margin:0;
+} */
+.res-image {
+    width:100%;
+    max-width: 30rem;
+    border-radius: 10px;
+    transition: .5s ease;
+}
+.res-image:hover{
+    box-shadow:
+    1px 1px #373737,
+    2px 2px #373737,
+    3px 3px #373737,
+    4px 4px #373737,
+    5px 5px #373737,
+    6px 6px #373737;
+    -webkit-transform: translateX(-3px);
+    transform: translateX(-3px);
+    transition: .5s ease;
+    }
+/* ===================== restaurant item styling =================== */
+.res-name{
+    font-size:1.6rem;
+    margin:0;
+    
+}
+.res-cuisines, .res-locality {
+    font-size:1.4rem;
+    margin:1rem 0 0 0;
+}
+.res-ratings{
+    display:flex;
+    width:100%;
+    justify-content:space-between;
+    font-size:1.4rem;
+    gap: 1rem;
+
+}
+.res-ratings >p{
+    margin:1rem 0 0 0;
+}  
+.res-offers {
+    padding: 1rem;
+    font-size: 1.2rem;
+    border: 1px solid #fff;
+    position: relative;
+}  
+.offers{
+    position: absolute;
+    transform: translate(-38px, -60px);
+    font-size: 1.5rem;
+    background: #023433;
+    padding: 0.4rem 1rem;
+}
+.head{
+    margin-left: 20rem;
+    font-weight: bolder;
+    font-size: 22px;
+}
+.item{
+    padding:1rem;
+    width: 50%;
+    gap: 3rem;
+    margin: auto;
+    margin-top:5px ;
+    display: flex;
+    justify-content: space-between;
+    /* border:1px solid black; */
+    background-color:#fff;
+    border: 1px solid #e4e4e4;
+    border-radius: 10px;
+
+}
+.item:hover {
+    transition: 0.3s;
+    box-shadow: 0 0px 10px 0 #d5d4d4;
+    transform:scale(1.01)
+}
+.item-name{
+    font-size:1.2rem;
+    font-weight:500;
+    font-weight: 600;
+    color: #023433;
+}
+.item-description{
+    color:var(--primary-color)
+}
+.item-image > img{
+    width:10rem;
+    height:100%;
+    border-radius: 10px;
+}
+
+/* =================RESTUARENT MENU SHIMMER ================================== */
+.menu_shimmer_head{
+    display: flex;
+    margin-top: 2rem;
+    
+}
+.shimmer_head{
+    animation:load 3s ease-in-out infinite running;
+}
+@keyframes load {
+    0%     {background-color:#bab9b9;}
+    50.0%  {background-color:#ffffff;}
+    100.0%  {background-color:#e7e6e6;}
+}
+
+.menu_shimmer_body{
+    margin-top: 2rem;
+}
+.skeliton{
+    margin-bottom: 20px;
+    margin:2rem auto;
+    width: 50%;
+    height: 200px;
+    border-radius: 10px;
+    animation:load 3s ease-in-out infinite running;
+}
+@keyframes load {
+    0%     {background-color:#bab9b9;}
+    50.0%  {background-color:#ffffff;}
+    100.0%  {background-color:#e7e6e6;}
+}
