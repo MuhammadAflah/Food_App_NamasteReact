@@ -1,4 +1,4 @@
-import { IMAGE_CDN_URL } from "../config";
+import { IMAGE_CDN_URL } from "../Config";
 
 const RestrauntCard = ({
   name,

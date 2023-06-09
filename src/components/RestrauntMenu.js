@@ -1,19 +1,18 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { IMAGE_CDN_URL } from "../config";
-import Shimmer from "./Shimmer";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-    faStar,
-    faStopwatch,
-    faMoneyBill,
-} from "@fortawesome/free-solid-svg-icons";
+import useRestuarent from "../utils/useRestuarent";
 import RestrauntMenuShimmer from "./RestrauntMenuShimmer";
 const RestaurantMenu = () => {
     const { resId } = useParams();
-    const [restuarent, setRestuarent] = useState({});
+    // const [isLoaded] = useState(false);
+    
+    const restuarent = useRestuarent(resId)
+    // const itemCards = restuarent?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.slice(1)[0]?.card?.card
+    // console.log(itemCards,"data");
     const [restaurantCards, setRestaurantCards] = useState({})
-    const [isLoaded, setIsLoaded] = useState(false);
+
+
     useEffect(() => {
         getRestaurantInfo();
     }, []);
@@ -22,16 +21,16 @@ const RestaurantMenu = () => {
         const data = await fetch(
             `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9715987&lng=77.5945627&restaurantId=${resId}&submitAction=ENTER`
         );
-        const json = await data.json();
+        const json = await data?.json();
         console.log(json.data);
-        setRestuarent(json?.data?.cards[0]?.card?.card?.info);
+        // setRestuarent(json?.data?.cards[0]?.card?.card?.info);
         setRestaurantCards(json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.slice(1)[0]?.card?.card)
-        setIsLoaded(true);
+        // setIsLoaded(true);
     }
 
     if (!restuarent) return null;
 
-    return !isLoaded ? (
+    return !restuarent ? (
         <RestrauntMenuShimmer />
     ) : (
         <>
@@ -44,7 +43,7 @@ const RestaurantMenu = () => {
                 </div>
                 <div className="res-details">
                     <h5 className="res-name">{restuarent?.name}</h5>
-                    <p className="res-cuisines">{restuarent?.cuisines.join(",")}</p>
+                    <p className="res-cuisines">{restuarent?.cuisines?.join(",")}</p>
                     <p className="res-locality">{restuarent?.locality}</p>
                     <div className="res-ratings">
                         <p>
@@ -61,13 +60,13 @@ const RestaurantMenu = () => {
                 </div>
                 <div className="res-offers">
                     <p className="offers">Offers : </p>
-                    <p>{restuarent?.aggregatedDiscountInfo?.descriptionList[0].meta} </p>
-                    <p>{restuarent?.aggregatedDiscountInfo?.descriptionList[1].meta} </p>
+                    <p>{restuarent?.aggregatedDiscountInfo?.descriptionList[0]?.meta} </p>
+                    <p>{restuarent?.aggregatedDiscountInfo?.descriptionList[1]?.meta} </p>
                 </div>
             </div>
 
 
-            {restaurantCards.itemCards.length > 0 ? (
+            {restaurantCards?.itemCards?.length > 0 ? (
                 <div className="relatedItems">
                     <div className="head">
                         <h2>Menu</h2>

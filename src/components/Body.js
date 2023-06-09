@@ -1,100 +1,12 @@
-// // import { restaurantList } from "../Config.js";
-// import { restaurantList } from "../Config";
-// import RestrauntCard from "./RestrauntCard";
-// import { useEffect, useState } from "react";
-// import Shimmer from "./Shimmer";
-
-// function filterData(searchText, restaurants) {
-//     const filterData = restaurants.filter((restaurant) =>
-//         restaurant?.data?.name?.toLowerCase()?.includes(searchText.toLowerCase())
-//         //   .toLowerCase()
-
-//     );
-//     console.log(filterData);
-//     console.log(restaurants);
-
-//     return filterData;
-// }
-
-// const Body = () => {
-//     const [allRestaurant, setAllRestaurant] = useState([])
-//     const [filteredRestaurants, setFilteredRestaurants] = useState([]);
-//     const [searchText, setSearchText] = useState("");
-
-//     console.log("render");
-
-//     useEffect(() => {
-//         getRestaurants()
-//         console.log("useEffect");
-//     }, []);
-
-//     async function getRestaurants() {
-//         const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=27.8973944&lng=78.0880129&page_type=DESKTOP_WEB_LISTING")
-//         const json = await data.json()
-//         console.log(json);
-//         setAllRestaurant(json?.data?.cards[2]?.data?.data?.cards)
-//         setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards)
-
-//     }
-
-//     // if (filteredRestaurants?.length === 0) return <h1>No item found</h1>
-
-//     return (allRestaurant.length === 0) ? <Shimmer /> : (
-//         <>
-//             <div className="search-container">
-//                 <form action="" onSubmit={(e) => e.preventDefault()}>
-//                     {/* <form> */}
-//                     <input
-//                         type="text"
-//                         className="search-input"
-//                         placeholder="Search"
-//                         onChange={(e) => setSearchText(e.target.value)}
-//                         value={searchText}
-//                     />
-//                     <button
-//                         className="search-btn"
-//                         onClick={() => {
-//                             const data = filterData(searchText, allRestaurant);
-//                             setFilteredRestaurants(data);
-//                         }}
-//                     >
-//                         Search
-//                     </button>
-//                 </form>
-//             </div>
-
-//             <div className="restaurant-list">
-//                 {filteredRestaurants.length === 0 ? <h1>No item found</h1> :
-//                     filteredRestaurants.map((restaurant) => {
-//                         return (
-//                             <RestrauntCard {...restaurant.data} key={restaurant.data.id} />
-//                         );
-//                     })
-//                 }
-//             </div>
-//         </>
-//     );
-// };
-
-// export default Body;
-
-
-
-
 import { restaurantList } from "../config";
 import RestrauntCard from "./RestrauntCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { IMAGE_CDN_URL } from "../config";
 import { Link } from "react-router-dom";
-function filteredRestaurants(searchText, actualData) {
-  const data = actualData.filter((restaurant) => {
-    return restaurant.data.name
-      .toLowerCase()
-      .includes(searchText.toLowerCase());
-  });
-  return data;
-}
+import { filteredRestaurants } from "../utils/helper";
+import useOnline from "../utils/useOnline";
+
 
 const Body = () => {
   const [searchText, setSearchText] = useState("");
@@ -122,6 +34,12 @@ const Body = () => {
   useEffect(() => {
     getRestaurants();
   }, []);
+
+  const isOnline = useOnline()
+
+  if(!isOnline){
+    return <h1>OFFLINE, Please check your internet connection</h1>
+  }
 
   return (
     <>
